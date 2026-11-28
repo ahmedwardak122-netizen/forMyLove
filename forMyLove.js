@@ -470,6 +470,132 @@ document.getElementById("quizBackBtn").addEventListener("click", () => {
 
 /* --------------- LETTER -------------- */
 
+const letters = [
+  {
+    greeting: "My Dear Love,",
+
+    message: `
+            I LOVE YOU MY LOVE. You are my calm, my happiness and my heart.
+            Every smile of mine somehow leads back to you. I feel so lucky to
+            have you in my life, my heart chose you and i keep choosing you
+            every day. With you, forever feels safe, warm, and real. You are
+            my favorite feeling.
+        `,
+
+    closing: "Forever Yours ❤️",
+    date: "November 28, 2026",
+  },
+
+  {
+    greeting: "My Beautiful Love,",
+
+    message: `
+            I wish you could see yourself through my eyes, even for just a
+            moment. You would understand how special you are to me and how
+            much happiness you bring into my life.
+
+            You are one of the most beautiful parts of my world, and I never
+            want you to forget that.
+        `,
+
+    closing: "With All My Love ❤️",
+    date: "December 1, 2026",
+  },
+
+  {
+    greeting: "To My Favorite Person,",
+
+    message: `
+            Sometimes I wonder how I got so lucky to have someone like you
+            in my life.
+
+            You make ordinary days feel special, and even the smallest
+            moments become beautiful when they involve you.
+
+            Thank you for being you, my love.
+        `,
+
+    closing: "Yours Forever 💗",
+    date: "December 5, 2026",
+  },
+
+  {
+    greeting: "My Dearest Fatima,",
+
+    message: `
+            No matter how many miles separate us, you will always be close
+            to my heart.
+
+            Distance may keep us apart physically, but it cannot change the
+            love I have for you.
+
+            I look forward to all the beautiful memories we still have
+            waiting for us.
+        `,
+
+    closing: "Until We Meet Again ❤️",
+    date: "December 10, 2026",
+  },
+];
+
+// Current letter index
+let currentLetterIndex = 0;
+
+// HTML elements
+const letterContent = document.getElementById("letterContent");
+const letterCounter = document.getElementById("letterCounter");
+
+const prevLetterBtn = document.getElementById("prevLetterBtn");
+const nextLetterBtn = document.getElementById("nextLetterBtn");
+
+// Display letter
+function showLetter(index) {
+  const letter = letters[index];
+
+  letterContent.innerHTML = `
+        <article class="letter-paper">
+
+            <p>${letter.greeting}</p>
+
+            <p>${letter.message}</p>
+
+            <p>${letter.closing}</p>
+
+            <p class="letter-date">${letter.date}</p>
+
+        </article>
+    `;
+
+  // Update counter
+  letterCounter.textContent = `${index + 1} / ${letters.length}`;
+
+  // Disable buttons at beginning and end
+  prevLetterBtn.disabled = index === 0;
+
+  nextLetterBtn.disabled = index === letters.length - 1;
+}
+
+// Next letter
+nextLetterBtn.addEventListener("click", () => {
+  if (currentLetterIndex < letters.length - 1) {
+    currentLetterIndex++;
+
+    showLetter(currentLetterIndex);
+  }
+});
+
+// Previous letter
+prevLetterBtn.addEventListener("click", () => {
+  if (currentLetterIndex > 0) {
+    currentLetterIndex--;
+
+    showLetter(currentLetterIndex);
+  }
+});
+
+// Show first letter when page loads
+showLetter(currentLetterIndex);
+
 document.getElementById("letterBackBtn").addEventListener("click", () => {
   showPage("giftsPage");
 });
